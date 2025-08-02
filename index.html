@@ -1,23 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <title>CRUD Base</title>
+  <style>
+    table, th, td { border: 1px solid black; border-collapse: collapse; }
+    th, td { padding: 5px; }
+  </style>
 </head>
-
 <body>
-  <nav class="navbar">
-        <ul class="menu">
-            <li><a href="Inicio.html">Inicio</a></li>
-            <li><a href="Empleados.html">Empleados</a></li>
-            <li><a href="">Clientes</a></li>
-            <li><a href="">Inventario</a></li>
-            <li><a href="">Productos</a></li>
-        </ul>
-    </nav>
+
+  <h1>CRUD Base</h1>
+
+  <form id="formulario">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="hidden" id="indice">
+    <button type="submit">Guardar</button>
+  </form>
+
+  <h2>Registros:</h2>
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const formulario = document.getElementById("formulario");
+    const tabla = document.querySelector("#tabla tbody");
+    let registros = [];
+
+    formulario.addEventListener("submit", e => {
+        e.preventDefault();
+        const nombre = document.getElementById("nombre").value.trim();
+        registros.push({ nombre });
+        formulario.reset();
+        mostrarRegistros();
+    });
+
+    function mostrarRegistros() {
+        tabla.innerHTML = "";
+        registros.forEach((registro) => {
+        const fila = tabla.insertRow();
+        fila.insertCell(0).innerText = registro.nombre;
+        fila.insertCell(1).innerText = "Sin acciones aún";
+        });
+    }
+
+  </script>
 
 </body>
-
 </html>
