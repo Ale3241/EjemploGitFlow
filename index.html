@@ -30,6 +30,27 @@
   </table>
 
   <script>
+    const formulario = document.getElementById("formulario");
+    const tabla = document.querySelector("#tabla tbody");
+    let registros = [];
+
+    formulario.addEventListener("submit", e => {
+        e.preventDefault();
+        const nombre = document.getElementById("nombre").value.trim();
+        registros.push({ nombre });
+        formulario.reset();
+        mostrarRegistros();
+    });
+
+    function mostrarRegistros() {
+        tabla.innerHTML = "";
+        registros.forEach((registro) => {
+        const fila = tabla.insertRow();
+        fila.insertCell(0).innerText = registro.nombre;
+        fila.insertCell(1).innerText = "Sin acciones aún";
+        });
+    }
+
   </script>
 
 </body>
