@@ -32,5 +32,17 @@
   <script>
   </script>
 
+  <script>
+    function mostrarRegistros() {
+      tabla.innerHTML = "";
+      registros.forEach((registro) => {
+        const fila = tabla.insertRow();
+        fila.insertCell(0).innerText = registro.nombre;
+        fila.insertCell(1).innerText = "Sin acciones aún";
+      });
+    }
+  </script>
+
+
 </body>
 </html>
