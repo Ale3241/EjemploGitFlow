@@ -87,6 +87,43 @@
     }
   </script>
 
+  <script>
+    function mostrarRegistros() {
+      tabla.innerHTML = "";
+      registros.forEach((registro, index) => {
+        const fila = tabla.insertRow();
+        fila.insertCell(0).innerText = registro.nombre;
+        const celdaAcciones = fila.insertCell(1);
+
+        const btnEditar = document.createElement("button");
+        btnEditar.innerText = "Editar";
+        btnEditar.onclick = () => cargarRegistro(index);
+        celdaAcciones.appendChild(btnEditar);
+      });
+    }
+
+    function cargarRegistro(indice) {
+      document.getElementById("nombre").value = registros[indice].nombre;
+      document.getElementById("indice").value = indice;
+    }
+
+    formulario.addEventListener("submit", e => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const indice = document.getElementById("indice").value;
+
+      if (indice !== "") {
+        registros[indice].nombre = nombre;
+        document.getElementById("indice").value = "";
+      } else {
+        registros.push({ nombre });
+      }
+
+      formulario.reset();
+      mostrarRegistros();
+    });
+  </script>
+
 
 </body>
 </html>
